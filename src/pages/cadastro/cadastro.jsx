@@ -1,4 +1,15 @@
 import React, { useState } from 'react';
+import { dbPromise } from "../../utils/db";
+
+export const saveCadastroDB = async (cadastro) => {
+  const db = await dbPromise;
+  return db.put("cadastros", cadastro);
+};
+
+export const getCadastrosDB = async () => {
+  const db = await dbPromise;
+  return db.getAll("cadastros");
+};
 
 
 function Cadastro({ onSalvar, listaCompleta }) {
@@ -8,6 +19,7 @@ function Cadastro({ onSalvar, listaCompleta }) {
   const [complemento, setComplemento] = useState('');
   const [loading, setLoading] = useState(false);
   const [erro, setErro] = useState('');
+  const [] = useState(''); 
 
   const handleCepChange = (e) => {
     setCep(e.target.value.replace(/\D/g, '').slice(0, 8));

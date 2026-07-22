@@ -1,15 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/home/home';
 import Cadastro from './pages/cadastro/cadastro';
 import Historico from './pages/historico/historico';
+import { saveCadastroDB, getCadastrosDB } from "./utils/cadastroDB";
 
 function App() {
   const [cadastros, setCadastros] = useState([]);
 
-  const adicionarCadastro = (novo) => {
-    setCadastros((antigos) => [novo, ...antigos]);
+  useEffect(() => {
+    const carregarCadastros = async () => {
+      const lista = await getCadastrosDB();
+  
+      lista.sort((a, b) => b.id - a.id);
+  
+      setCadastros(lista);
+    };
+  
+    carregarCadastros();
+  }, []);
+
+  const adicionarCadastro = async (novo) => {
+    await saveCadastroDB(novo);
+  
+    const lista = await getCadastrosDB();
+  
+    lista.sort((a, b) => b.id - a.id);
+  
+    setCadastros(lista);
   };
 
   return (

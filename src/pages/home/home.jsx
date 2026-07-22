@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Home({ total }) {
   return (
     <div>
-      <h1>Bem-vindo ao Sistema de CEP</h1>
+      <h1>CEP Search</h1>
       <p>Total de registros salvos: {total}</p>
       
       <p>

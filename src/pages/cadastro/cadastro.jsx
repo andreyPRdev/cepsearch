@@ -43,14 +43,13 @@ function Cadastro({ onSalvar, listaCompleta }) {
         complemento
       };
 
-      onSalvar(novo); 
-      
+      onSalvar(novo);
+
       setNome('');
       setCep('');
       setNumero('');
       setComplemento('');
-      
-      
+
     } catch (err) {
       setErro(err.message);
     } finally {
@@ -58,44 +57,47 @@ function Cadastro({ onSalvar, listaCompleta }) {
     }
   };
 
-  
   const ultimosTres = listaCompleta ? listaCompleta.slice(0, 3) : [];
 
   return (
-    <div>
-      <h1>Cadastro</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Nome: </label>
+    <div className="cadastro-container">
+      <h1 className="cadastro-title">Cadastro</h1>
+
+      <form className="cadastro-form" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Nome</label>
           <input type="text" value={nome} placeholder="obrigatório" onChange={(e) => setNome(e.target.value)} required />
         </div>
-        <div>
-          <label>CEP: </label>
+        <div className="form-group">
+          <label>CEP</label>
           <input type="text" value={cep} placeholder="obrigatório" onChange={handleCepChange} maxLength="8" required />
         </div>
-        <div>
-          <label>Número: </label>
+        <div className="form-group">
+          <label>Número</label>
           <input type="text" value={numero} placeholder="obrigatório" onChange={(e) => setNumero(e.target.value)} required />
         </div>
-        <div>
-          <label>Complemento: </label>
+        <div className="form-group">
+          <label>Complemento</label>
           <input type="text" value={complemento} placeholder="opcional" onChange={(e) => setComplemento(e.target.value)} />
         </div>
-        {erro && <p>{erro}</p>}
-        <button type="submit" disabled={loading}>
+
+        {erro && <p className="cadastro-erro">{erro}</p>}
+
+        <button type="submit" className="cadastro-btn" disabled={loading}>
           {loading ? 'Buscando...' : 'Cadastrar'}
         </button>
       </form>
 
-      <hr />
-      
-      <h2>Últimos Cadastros (3)</h2>
+      <hr className="cadastro-divider" />
+
+      <h2 className="cadastro-subtitle">Últimos Cadastros</h2>
+
       {ultimosTres.length === 0 ? (
-        <p>Nenhum cadastro recente.</p>
+        <p className="cadastro-vazio">Nenhum cadastro recente.</p>
       ) : (
-        <div>
+        <div className="cadastro-lista">
           {ultimosTres.map((item) => (
-            <div key={item.id} style={{border: '1px solid black', margin: '10px 0', padding: '10px'}}>
+            <div key={item.id} className="cadastro-card">
               <h3>{item.logradouro}, {item.numero}</h3>
               <p><strong>Nome:</strong> {item.nome}</p>
               <p><strong>CEP:</strong> {item.cep}</p>
@@ -110,4 +112,4 @@ function Cadastro({ onSalvar, listaCompleta }) {
   );
 }
 
-export default Cadastro;   
+export default Cadastro;

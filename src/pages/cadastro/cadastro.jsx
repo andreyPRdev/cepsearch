@@ -67,15 +67,15 @@ function Cadastro({ onSalvar, listaCompleta }) {
       <form onSubmit={handleSubmit}>
         <div>
           <label>Nome: </label>
-          <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} required />
+          <input type="text" value={nome} placeholder="obrigatório" onChange={(e) => setNome(e.target.value)} required />
         </div>
         <div>
           <label>CEP: </label>
-          <input type="text" value={cep} onChange={handleCepChange} maxLength="8" required />
+          <input type="text" value={cep} placeholder="obrigatório" onChange={handleCepChange} maxLength="8" required />
         </div>
         <div>
           <label>Número: </label>
-          <input type="text" value={numero} onChange={(e) => setNumero(e.target.value)} required />
+          <input type="text" value={numero} placeholder="obrigatório" onChange={(e) => setNumero(e.target.value)} required />
         </div>
         <div>
           <label>Complemento: </label>

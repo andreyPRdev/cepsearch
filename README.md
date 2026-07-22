@@ -48,7 +48,7 @@ npm install
 4. Execute o projeto:
 
 ```bash
-npm run dev
+npm start
 ```
 
 ## Autor

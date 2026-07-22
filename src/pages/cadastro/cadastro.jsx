@@ -79,7 +79,7 @@ function Cadastro({ onSalvar, listaCompleta }) {
         </div>
         <div>
           <label>Complemento: </label>
-          <input type="text" value={complemento} onChange={(e) => setComplemento(e.target.value)} />
+          <input type="text" value={complemento} placeholder="opcional" onChange={(e) => setComplemento(e.target.value)} />
         </div>
         {erro && <p>{erro}</p>}
         <button type="submit" disabled={loading}>
